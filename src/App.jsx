@@ -16,6 +16,10 @@ function App() {
     setTodos([...todos, {id: nextId, isFinished: false, text: todoText }])
   }
 
+  // useEffect(() => {
+  //   console.log(todos);
+  // })
+
   return (
     <>
       <AddTodo addTodos={addTodos} />

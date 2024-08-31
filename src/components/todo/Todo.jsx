@@ -6,9 +6,17 @@ const Todo = ({ finishTodo, text, isFinished, deleteTodo, editTodo }) => {
 
   return (
     <div>
-      <input type="checkbox" checked={isFinished} onChange={() => finishTodo(!isFinished)}/>
+      <input
+        type="checkbox"
+        checked={isFinished}
+        onChange={() => finishTodo(!isFinished)}
+      />
       {isEditing ? (
-        <input value={todoText} type="text" onChange={(e) => setTodoText(e.target.value)} />
+        <input
+          value={todoText}
+          type="text"
+          onChange={(e) => setTodoText(e.target.value)}
+        />
       ) : (
         <span>{todoText}</span>
       )}
