@@ -4,6 +4,8 @@ import './App.css'
 import AddTodo from './components/addTodo/AddTodo'
 import TodoList from './components/todoList/TodoList'
 
+import TodoContext from './context/TodoContext'
+
 function App() {
 
   const [todos, setTodos] = useState([
@@ -16,14 +18,12 @@ function App() {
     setTodos([...todos, {id: nextId, isFinished: false, text: todoText }])
   }
 
-  // useEffect(() => {
-  //   console.log(todos);
-  // })
-
   return (
     <>
-      <AddTodo addTodos={addTodos} />
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoContext.Provider value={{ todos, setTodos }}>
+        <AddTodo />
+        <TodoList />
+      </TodoContext.Provider>
     </>
   )
 }
