@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react'
-import TodoContext from '../../context/TodoContext';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 
 const AddTodo = () => {
-  const {todos, dispatch } =  useContext(TodoContext);
+  const dispatch = useDispatch();
   const [todoText, setTodoText] = useState('');
 
   function addTodo(todoText) {
