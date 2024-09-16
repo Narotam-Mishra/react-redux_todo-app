@@ -1,22 +1,24 @@
 import Todo from "../todo/Todo"
 import "./TodoList.css"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-const TodoList = () => {
+const TodoList = ({ addTodo, editTodo, deleteTodo, finishTodo }) => {
   
-  const dispatch = useDispatch();
-  const todos = useSelector(state => state.todos)
+  const todos = useSelector(state => {
+    // console.log(state)
+    return state.todos.todoList
+  });
   
   function onDeleteTodo(id){
-    dispatch({ type: 'delete_todo', payload:{id} });
+    deleteTodo({ id });
   }
 
-  function editTodo(id, newTodo){
-    dispatch({ type: 'edit_todo', payload:{id, newTodo} });
+  function onEditTodo(id, newTodo){
+    editTodo({ id, newTodo });
   }
 
   function onFinishTodo(id, state){
-    dispatch({ type: 'finish_todo', payload:{id, state} });
+    finishTodo({ id, state });
   }
 
   return (
@@ -26,7 +28,7 @@ const TodoList = () => {
         key={todo.id}
         text={todo.text}
         isFinished={todo.isFinished}
-        editTodo={(newTodo) => editTodo(todo.id, newTodo)}
+        editTodo={(newTodo) => onEditTodo(todo.id, newTodo)}
         deleteTodo={() => onDeleteTodo(todo.id)}
         finishTodo={(state) => onFinishTodo(todo.id, state)}
       />
